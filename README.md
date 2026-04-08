@@ -39,3 +39,21 @@ All headlines in the ITW dataset were annotated and checked by domain experts fo
 ### Use in this repository
 
 This repository includes the dataset as a working research copy for reproducibility of the experiments and analyses implemented here.
+
+# Prompts
+
+This repository includes the prompt set used for framing-detection experiments:
+
+- `prompts.txt`
+
+The prompt file contains the evaluation prompts organised by prompting setup, including:
+
+- zero-shot prompts
+- zero-shot prompts with alternative wording
+- zero-shot prompts with a framing definition
+- few-shot prompts with 2 examples
+- few-shot prompts with 8 examples
+- mixed-domain, in-domain, and cross-domain few-shot variants
+- explanation-based versions of each prompt
+
+These prompts are intended for experiments on binary framing detection, where the model is asked to decide whether a headline or claim is framed and, in some variants, provide an explanation in JSON format.
