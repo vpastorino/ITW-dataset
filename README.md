@@ -4,7 +4,7 @@
 
 This repository includes a local research copy of the **In-the-Wild (ITW) framing dataset** introduced in:
 
-**Valeria Pastorino, Jasivan Alex Sivakumar, and Nafise Sadat Moosavi. _Decoding News Narratives: A Critical Analysis of Large Language Models in Framing Detection_.**#
+[**Valeria Pastorino, Jasivan Alex Sivakumar, and Nafise Sadat Moosavi. _Decoding News Narratives: A Critical Analysis of Large Language Models in Framing Detection_.**](https://arxiv.org/abs/2402.11621)
 
 If you use this dataset, please cite the paper above.
 
