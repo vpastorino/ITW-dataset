@@ -1,0 +1,259 @@
+# Framing Detection Prompts
+# Organised by experimental setting.
+# Comments below only flag formatting or syntax issues that may matter when these are copied into code.
+
+==================================================
+1) ZERO-SHOT (ZS)
+==================================================
+
+# simple ZS
+prompt1 = f"Decide whether this claim is framed: {claim}. Only response in the example output format that can be parsed by json:\
+\n{{\
+    \n \"Claim\": \"{claim}\",\n \"Framed\": false\n}}"
+
+# simple ZS DIFFERENT WORDING
+prompt2 = f"Decide whether this claim contains framing bias: {claim}. Only response in the example output format that can be parsed by json:\
+\n{{\
+    \n \"Claim\": \"{claim}\",\n \"Framed\": false\n}}"
+
+# simple ZS and explanation
+prompt3 = f"""Decide whether this claim is framed: {claim}, then give an explanation for your response. 
+    Only response in the example output format that can be parsed by json:\
+            \n{{\
+                \n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\"}}"""
+
+# simple ZS and explanation DIFFERENT WORDING
+prompt4 = f"""Decide whether this claim contains framing bias: {claim}, then give an explanation for your response. 
+    Only response in the example output format that can be parsed by json:\
+            \n{{\
+                \n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\"}}"""
+
+# Comment:
+# - prompt2 and prompt4 are the alternative zero-shot wording variants.
+
+==================================================
+2) ZERO-SHOT WITH DEFINITION
+==================================================
+
+# Definition ZS
+prompt5 = f"Framing is a communication strategy often used in journalism and political language. \
+    To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+    Decide whether this claim is framed: {claim}. Only response in the example output format that can be parsed by json:\
+\n{{\
+    \n \"Claim\": \"{claim}\",\n \"Framed\": false\n}}"
+
+# Definition ZS DIFFERENT WORDING
+prompt6 = f"Framing is a communication strategy often used in journalism and political language. \
+    To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+    Decide whether this claim contains framing bias: {claim}. Only response in the example output format that can be parsed by json:\
+\n{{\
+    \n \"Claim\": \"{claim}\",\n \"Framed\": false\n}}"
+
+# Definition ZS and explanation 
+prompt7 = f"""Framing is a communication strategy often used in journalism and political language. \
+    To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.   
+        Decide whether this claim is framed: {claim}, then give an explanation for your response. 
+            \n Only response in the example output format that can be parsed by json: 
+                \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\"}}"""
+
+# Definition ZS and explanation DIFFERENT WORDING
+prompt8 = f"""Framing is a communication strategy often used in journalism and political language. \
+    To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.   
+        Decide whether this claim contains framing bias: {claim}, then give an explanation for your response. 
+            \n Only response in the example output format that can be parsed by json: 
+                \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\"}}"""
+
+==================================================
+3) FEW-SHOT (2 EXAMPLES)
+==================================================
+
+# Simple FS
+prompt9 = f"""This is an example of a framed claim: \"Lawyers call US gun charges for Mexican man 'vindictive'\". 
+    This is an example of a claim that is not framed: \"Aurora shooting survivor Zack Golditch hopes perseverance leads to NFL draft opportunity\". 
+      Decide whether this claim is framed: {claim}. 
+        Only response in the example output format that can be parsed by json:\
+            \n{{\
+                \n \"Claim\": \"{claim}\",\n \"Framed\": false\n}}"""
+
+# Simple FS and explanation
+prompt10 = f"""This is an example of a framed claim: \"Lawyers call US gun charges for Mexican man 'vindictive'\". 
+    This is an example of a claim that is not framed: \"Aurora shooting survivor Zack Golditch hopes perseverance leads to NFL draft opportunity\". 
+      Decide whether this claim is framed: {claim}, then give an explanation for your response.
+        Only response in the example output format that can be parsed by json:\
+                            \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\"}}"""
+
+# Definition FS 
+prompt11 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+ This is an example of a framed claim: \"Lawyers call US gun charges for Mexican man 'vindictive'\". 
+    This is an example of a claim that is not framed: \"Aurora shooting survivor Zack Golditch hopes perseverance leads to NFL draft opportunity\". 
+      Decide whether this claim is framed: {claim}. 
+        Only response in the example output format that can be parsed by json:\
+            \n{{\
+                \n \"Claim\": \"{claim}\",\n \"Framed\": false\n}}"""
+
+# Definition FS and explanation
+prompt12 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+ This is an example of a framed claim: \"Lawyers call US gun charges for Mexican man 'vindictive'\". 
+    This is an example of a claim that is not framed: \"Aurora shooting survivor Zack Golditch hopes perseverance leads to NFL draft opportunity\". 
+      Decide whether this claim is framed: {claim},  then give an explanation for your response. 
+        Only response in the example output format that can be parsed by json:\
+            \n{{\
+                \n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\n}}"""
+
+
+==================================================
+4) FEW-SHOT (8 EXAMPLES) — MIXED DOMAIN
+==================================================
+
+# 8 examples 
+prompt13 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+            These are examples of framed claims: \"Lawyers call US gun charges for Mexican man 'vindictive'\"; 
+            \"Migrants flooding back to Britain\"; 
+            \"All migrants to get a British pension\"; 
+            \"Mass shooter was going through a lot and suffered abuse as a child\";         
+            These are examples of claims that are not framed: 
+            \"Mass shooting in a school: 34 deaths\"; 
+            \"Which days will be affected by train strikes\"; 
+            \"Officers face discipline for poor tactics in deadly shooting\"; 
+            \"Aurora shooting survivor Zack Golditch hopes perseverance leads to NFL draft opportunity\".   
+                    Decide whether this claim is framed: {claim}. 
+                        \n Only response in the example output format that can be parsed by json: 
+                            \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false\n\"}}"""
+
+# 8 examples with explanation
+prompt14 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+            These are examples of framed claims: \"Lawyers call US gun charges for Mexican man 'vindictive'\"; \"Migrants flooding back to Britain\"; \"All migrants to get a British pension\"; \"Mass shooter was going through a lot and suffered abuse as a child\";         
+            These are examples of claims that are not framed: \"Mass shooting in a school: 34 deaths\"; \"Which days will be affected by train strikes\"; \"Officers face discipline for poor tactics in deadly shooting\"; \"Aurora shooting survivor Zack Golditch hopes perseverance leads to NFL draft opportunity\".   
+                    Decide whether this claim is framed: {claim}, then give an explanation for your response. 
+                        \n Only response in the example output format that can be parsed by json: 
+               \n{{\ \n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\n}}"""
+
+
+==================================================
+5) FEW-SHOT (8 EXAMPLES) — FOCUSED IN-DOMAIN / SAME FRAME
+==================================================
+
+# 8 examples 
+prompt15 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+            These are examples of framed claims: \"Cruz biological mother's past a factor in school shooting\"; 
+            \"Former co-worker: Wisconsin shooting suspect never smiled\"; 
+            \"Orlando nightclub gunman remembered as abusive, homophobic and racist\"; 
+            \"California Shooter Had Domestic-Disturbance History\";         
+            These are examples of claims that are not framed: 
+            \"4 killed in New Year's Eve shooting at New Jersey home\"; 
+            \"Central Michigan student used father's gun to kill his parents, police say\"; 
+            \"James Comey recalls a 'life-changing' run-in with a gunman who broke into his childhood home\"; 
+            \"Bodycam Footage Shows Chaos Inside Las Vegas Casino After Mass Shooter Killed 58\".   
+                    Decide whether this claim is framed: {claim}. 
+                        \n Only response in the example output format that can be parsed by json: 
+                            \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false\n\"}}"""
+
+# 8 examples with explanation
+
+prompt16 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+            These are examples of framed claims: \"Cruz biological mother's past a factor in school shooting\"; 
+            \"Former co-worker: Wisconsin shooting suspect never smiled\"; 
+            \"Orlando nightclub gunman remembered as abusive, homophobic and racist\"; 
+            \"California Shooter Had Domestic-Disturbance History\";         
+            These are examples of claims that are not framed: 
+            \"4 killed in New Year's Eve shooting at New Jersey home\"; 
+            \"Central Michigan student used father's gun to kill his parents, police say\"; 
+            \"James Comey recalls a 'life-changing' run-in with a gunman who broke into his childhood home\"; 
+            \"Bodycam Footage Shows Chaos Inside Las Vegas Casino After Mass Shooter Killed 58\".   
+                    Decide whether this claim is framed: {claim}, then give an explanation for your response. 
+                        \n Only response in the example output format that can be parsed by json: 
+                            \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\n\"}}"""
+
+
+==================================================
+6) FEW-SHOT (8 EXAMPLES) — VARIED IN-DOMAIN / DIFFERENT FRAMES
+==================================================
+
+# 8 examples 
+prompt17 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+            These are examples of framed claims: \"House to vote next week on school safety bill with no gun measures\"; 
+            \"South Carolina lawmaker pulls out loaded gun during constituent meeting, audience says\"; 
+            \"Pittsburgh shooting: Alleged gunman posted stream of anti-Semitic hate online in months and moments before attack\"; 
+            \"Florida school failed Parkland shooter, report says\";         
+            These are examples of claims that are not framed: 
+            \"Lone Female Shooter Kills 3, Injures 3 In Aberdeen Shooting At Rite Aid Warehouse\"; 
+            \"A deranged gunman shot up a West Side school 30 years ago, killing a cop. Now officials want to name a park for the officer.\"; 
+            \"F.B.I. Agent Told the Truth, Jury Finds. He Did Not Fire His Gun During Militia Standoff.\"; 
+            \"Case on fatal shooting of Australian woman by former Minneapolis cop back in court\".   
+                    Decide whether this claim is framed: {claim}. 
+                        \n Only response in the example output format that can be parsed by json: 
+                            \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false\n\"}}"""
+
+# 8 examples with explanation
+prompt18 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+            These are examples of framed claims: \"House to vote next week on school safety bill with no gun measures\"; 
+            \"South Carolina lawmaker pulls out loaded gun during constituent meeting, audience says\"; 
+            \"Pittsburgh shooting: Alleged gunman posted stream of anti-Semitic hate online in months and moments before attack\"; 
+            \"Florida school failed Parkland shooter, report says\";         
+            These are examples of claims that are not framed: 
+            \"Lone Female Shooter Kills 3, Injures 3 In Aberdeen Shooting At Rite Aid Warehouse\"; 
+            \"A deranged gunman shot up a West Side school 30 years ago, killing a cop. Now officials want to name a park for the officer.\"; 
+            \"F.B.I. Agent Told the Truth, Jury Finds. He Did Not Fire His Gun During Militia Standoff.\"; 
+            \"Case on fatal shooting of Australian woman by former Minneapolis cop back in court\".   
+                    Decide whether this claim is framed: {claim}, then give an explanation for your response. 
+                        \n Only response in the example output format that can be parsed by json: 
+                            \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\n\"}}"""
+
+
+==================================================
+7) FEW-SHOT (8 EXAMPLES) — CROSS-DOMAIN / OUT-OF-DOMAIN
+==================================================
+
+# 8 examples OUT OF DOMAIN 
+prompt19 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+            These are examples of framed claims: \"Young lack the grit to get jobs\"; 
+            \"Diabetes crisis to cripple NHS\"; 
+            \"Secret EU plot to stitch up Britain\"; 
+            \"Migrants rob young Britons of jobs\";         
+            These are examples of claims that are not framed: 
+            \"Victoria Beckhams Stunning Family Goes to War in Fun British Vogue Shoot\"; 
+            \"Delta ‘Technology Issue’ Temporarily Disrupts Travel and Enrages Customers\"; 
+            \"The Plot to Subvert an Election: Unraveling the Russia Story So Far\"; 
+            \"‘Fortnite’ Season 6 Theories & Leaks - the Cube, Weapon Skins, Themes & More\".   
+                    Decide whether this claim is framed: {claim}. 
+                        \n Only response in the example output format that can be parsed by json: 
+                            \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false\n\"}}"""
+
+# 8 examples with explanation
+prompt20 = f"""Framing is a communication strategy often used in journalism and political language. \
+        To frame means to select certain aspects of an issue, disregarding other aspects, in order to favour a certain interpretation of that issue.  \
+            These are examples of framed claims: \"Young lack the grit to get jobs\"; 
+            \"Diabetes crisis to cripple NHS\"; 
+            \"Secret EU plot to stitch up Britain\"; 
+            \"Migrants rob young Britons of jobs\";         
+            These are examples of claims that are not framed: 
+            \"Victoria Beckhams Stunning Family Goes to War in Fun British Vogue Shoot\"; 
+            \"Delta ‘Technology Issue’ Temporarily Disrupts Travel and Enrages Customers\"; 
+            \"The Plot to Subvert an Election: Unraveling the Russia Story So Far\"; 
+            \"‘Fortnite’ Season 6 Theories & Leaks - the Cube, Weapon Skins, Themes & More\".   
+                    Decide whether this claim is framed: {claim}, then give an explanation for your response. 
+                        \n Only response in the example output format that can be parsed by json: 
+                            \n{{\n \"Claim\": \"{claim}\",\n \"Framed\": false, \n \"explanation\": \"explanation of your response\n\"}}"""
+
+==================================================
+8) GENERAL NOTES
+==================================================
+
+# Notes:
+# - Organisational mapping used here:
+#   * prompt1–4: zero-shot
+#   * prompt5–8: zero-shot + definition
+#   * prompt9–12: few-shot (2 examples)
+#   * prompt13–14: few-shot 8 examples, mixed domain
+#   * prompt15–16: few-shot 8 examples, focused in-domain / same frame
+#   * prompt17–18: few-shot 8 examples, varied in-domain / different frames
+#   * prompt19–20: few-shot 8 examples, cross-domain / out-of-domain
